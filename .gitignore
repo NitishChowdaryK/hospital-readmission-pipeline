@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+*.log
+ingestion/patient_discharges.csv
+dbt_project/hospital_dbt/logs/
+dbt_project/hospital_dbt/target/

@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: stg_patient_discharges
+    description: "Cleaned and validated patient discharge records"
+    columns:
+      - name: patient_id
+        tests:
+          - not_null
+          - unique
+      - name: age
+        tests:
+          - not_null
+      - name: diagnosis
+        tests:
+          - not_null
+      - name: length_of_stay
+        tests:
+          - not_null
+
+  - name: int_patient_risk_factors
+    description: "Patient records enriched with risk indicators and composite score"
+    columns:
+      - name: patient_id
+        tests:
+          - not_null
+          - unique
+      - name: risk_score
+        tests:
+          - not_null
+
+  - name: mart_readmission_risk
+    description: "Final patient risk table with risk level classification"
+    columns:
+      - name: patient_id
+        tests:
+          - not_null
+          - unique
+      - name: risk_level
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']
+
+  - name: mart_diagnosis_summary
+    description: "Readmission rates and risk scores aggregated by diagnosis"
+    columns:
+      - name: diagnosis
+        tests:
+          - not_null
+          - unique
+
+  - name: mart_department_summary
+    description: "Risk breakdown aggregated by hospital department"
+    columns:
+      - name: department
+        tests:
+          - not_null
+          - unique

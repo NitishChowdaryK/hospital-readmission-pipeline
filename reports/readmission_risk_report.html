@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hospital Readmission Risk Report</title>
+<style>
+  body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; margin: 0; padding: 0; color: #1e293b; }
+  .header { background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; padding: 36px 48px; }
+  .header h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 6px; }
+  .header p { opacity: 0.8; font-size: 0.9rem; }
+  .content { padding: 36px 48px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 36px; }
+  .kpi { background: white; border-radius: 10px; padding: 20px 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); border-top: 4px solid #2563eb; }
+  .kpi h3 { font-size: 2rem; font-weight: 800; color: #2563eb; margin-bottom: 4px; }
+  .kpi p { font-size: 0.8rem; color: #64748b; }
+  .kpi.red { border-top-color: #dc2626; } .kpi.red h3 { color: #dc2626; }
+  .kpi.orange { border-top-color: #ea580c; } .kpi.orange h3 { color: #ea580c; }
+  .kpi.green { border-top-color: #16a34a; } .kpi.green h3 { color: #16a34a; }
+  .section { background: white; border-radius: 10px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .section h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { background: #1e3a5f; color: white; padding: 10px 12px; text-align: left; font-size: 0.78rem; }
+  td { padding: 9px 12px; border-bottom: 1px solid #f1f5f9; }
+  tr:hover { background: #f8fafc; }
+  .footer { text-align: center; padding: 20px; font-size: 0.8rem; color: #94a3b8; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🏥 Hospital Readmission Risk Report</h1>
+  <p>Generated: 2026-04-06 00:31 UTC &nbsp;|&nbsp; Data Source: Snowflake HOSPITAL_DB &nbsp;|&nbsp; Pipeline: Python → Snowflake → dbt</p>
+</div>
+<div class="content">
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi"><h3>4,705</h3><p>Total Patients</p></div>
+    <div class="kpi"><h3>20.9%</h3><p>30-Day Readmission Rate</p></div>
+    <div class="kpi red"><h3>1,486</h3><p>Critical Risk Patients</p></div>
+    <div class="kpi orange"><h3>2,155</h3><p>High Risk Patients</p></div>
+  </div>
+
+  <!-- High Risk Patients -->
+  <div class="section">
+    <h2>⚠️ High Risk Patients (Top 20)</h2>
+    <table>
+      <tr><th>Patient ID</th><th>Age</th><th>Gender</th><th>Diagnosis</th><th>Department</th>
+          <th>Insurance</th><th>Length of Stay</th><th>Prior Visits</th><th>Risk Score</th><th>Risk Level</th></tr>
+      <tr>
+                <td>P000504</td>
+                <td>91</td>
+                <td>M</td>
+                <td>Heart Failure</td>
+                <td>Neurology</td>
+                <td>Uninsured</td>
+                <td>17 days</td>
+                <td>5</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000176</td>
+                <td>85</td>
+                <td>M</td>
+                <td>Sepsis</td>
+                <td>Neurology</td>
+                <td>Private</td>
+                <td>17 days</td>
+                <td>5</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000046</td>
+                <td>86</td>
+                <td>M</td>
+                <td>Heart Failure</td>
+                <td>ICU</td>
+                <td>Private</td>
+                <td>30 days</td>
+                <td>3</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000525</td>
+                <td>82</td>
+                <td>F</td>
+                <td>Heart Failure</td>
+                <td>General Medicine</td>
+                <td>Medicare</td>
+                <td>14 days</td>
+                <td>4</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000486</td>
+                <td>95</td>
+                <td>F</td>
+                <td>Heart Failure</td>
+                <td>Cardiology</td>
+                <td>Private</td>
+                <td>19 days</td>
+                <td>3</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000222</td>
+                <td>89</td>
+                <td>F</td>
+                <td>COPD</td>
+                <td>Cardiology</td>
+                <td>Uninsured</td>
+                <td>16 days</td>
+                <td>2</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000266</td>
+                <td>93</td>
+                <td>M</td>
+                <td>Heart Failure</td>
+                <td>ICU</td>
+                <td>Medicaid</td>
+                <td>23 days</td>
+                <td>5</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000507</td>
+                <td>80</td>
+                <td>M</td>
+                <td>Pneumonia</td>
+                <td>General Medicine</td>
+                <td>Private</td>
+                <td>29 days</td>
+                <td>5</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000050</td>
+                <td>92</td>
+                <td>M</td>
+                <td>Heart Failure</td>
+                <td>Cardiology</td>
+                <td>Medicaid</td>
+                <td>30 days</td>
+                <td>2</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000509</td>
+                <td>86</td>
+                <td>M</td>
+                <td>COPD</td>
+                <td>General Medicine</td>
+                <td>Medicaid</td>
+                <td>24 days</td>
+                <td>4</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000591</td>
+                <td>80</td>
+                <td>M</td>
+                <td>Sepsis</td>
+                <td>Nephrology</td>
+                <td>Private</td>
+                <td>24 days</td>
+                <td>3</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000473</td>
+                <td>86</td>
+                <td>F</td>
+                <td>Pneumonia</td>
+                <td>Cardiology</td>
+                <td>Uninsured</td>
+                <td>30 days</td>
+                <td>3</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000547</td>
+                <td>88</td>
+                <td>M</td>
+                <td>Sepsis</td>
+                <td>ICU</td>
+                <td>Private</td>
+                <td>2 days</td>
+                <td>2</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000327</td>
+                <td>92</td>
+                <td>M</td>
+                <td>Sepsis</td>
+                <td>General Medicine</td>
+                <td>Private</td>
+                <td>30 days</td>
+                <td>4</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000200</td>
+                <td>93</td>
+                <td>F</td>
+                <td>COPD</td>
+                <td>Nephrology</td>
+                <td>Medicaid</td>
+                <td>25 days</td>
+                <td>5</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000069</td>
+                <td>80</td>
+                <td>F</td>
+                <td>Pneumonia</td>
+                <td>General Medicine</td>
+                <td>Uninsured</td>
+                <td>16 days</td>
+                <td>2</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000515</td>
+                <td>94</td>
+                <td>F</td>
+                <td>COPD</td>
+                <td>General Medicine</td>
+                <td>Medicaid</td>
+                <td>23 days</td>
+                <td>3</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000349</td>
+                <td>88</td>
+                <td>F</td>
+                <td>Sepsis</td>
+                <td>Orthopedics</td>
+                <td>Medicaid</td>
+                <td>21 days</td>
+                <td>4</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000373</td>
+                <td>95</td>
+                <td>M</td>
+                <td>Heart Failure</td>
+                <td>ICU</td>
+                <td>Uninsured</td>
+                <td>24 days</td>
+                <td>3</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr><tr>
+                <td>P000435</td>
+                <td>83</td>
+                <td>F</td>
+                <td>Pneumonia</td>
+                <td>Neurology</td>
+                <td>Private</td>
+                <td>29 days</td>
+                <td>2</td>
+                <td><strong>10/10</strong></td>
+                <td><span style="background:#dc2626;color:#fff;padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700">CRITICAL</span></td>
+            </tr>
+    </table>
+  </div>
+
+  <!-- Diagnosis Summary -->
+  <div class="section">
+    <h2>📋 Readmission Rate by Diagnosis</h2>
+    <table>
+      <tr><th>Diagnosis</th><th>Total Patients</th><th>Readmissions</th>
+          <th>Readmission Rate</th><th>Avg Risk Score</th><th>High Risk Count</th></tr>
+      <tr>
+                <td><strong>Heart Failure</strong></td>
+                <td>485</td>
+                <td>114</td>
+                <td><strong style="color:#dc2626">23.51%</strong></td>
+                <td>7.62</td>
+                <td>454</td>
+            </tr><tr>
+                <td><strong>Sepsis</strong></td>
+                <td>483</td>
+                <td>107</td>
+                <td><strong style="color:#dc2626">22.15%</strong></td>
+                <td>7.65</td>
+                <td>454</td>
+            </tr><tr>
+                <td><strong>Stroke</strong></td>
+                <td>509</td>
+                <td>112</td>
+                <td><strong style="color:#dc2626">22.00%</strong></td>
+                <td>6.68</td>
+                <td>407</td>
+            </tr><tr>
+                <td><strong>Pneumonia</strong></td>
+                <td>435</td>
+                <td>95</td>
+                <td><strong style="color:#dc2626">21.84%</strong></td>
+                <td>7.48</td>
+                <td>393</td>
+            </tr><tr>
+                <td><strong>Hypertension</strong></td>
+                <td>462</td>
+                <td>99</td>
+                <td><strong style="color:#dc2626">21.43%</strong></td>
+                <td>5.60</td>
+                <td>268</td>
+            </tr><tr>
+                <td><strong>Hip/Knee Replacement</strong></td>
+                <td>479</td>
+                <td>101</td>
+                <td><strong style="color:#dc2626">21.09%</strong></td>
+                <td>5.50</td>
+                <td>265</td>
+            </tr><tr>
+                <td><strong>Cardiac Arrhythmia</strong></td>
+                <td>478</td>
+                <td>97</td>
+                <td><strong style="color:#dc2626">20.29%</strong></td>
+                <td>6.55</td>
+                <td>368</td>
+            </tr><tr>
+                <td><strong>COPD</strong></td>
+                <td>445</td>
+                <td>85</td>
+                <td><strong style="color:#dc2626">19.10%</strong></td>
+                <td>7.55</td>
+                <td>410</td>
+            </tr><tr>
+                <td><strong>Diabetes</strong></td>
+                <td>469</td>
+                <td>89</td>
+                <td><strong style="color:#dc2626">18.98%</strong></td>
+                <td>5.66</td>
+                <td>273</td>
+            </tr><tr>
+                <td><strong>Kidney Disease</strong></td>
+                <td>460</td>
+                <td>85</td>
+                <td><strong style="color:#dc2626">18.48%</strong></td>
+                <td>6.53</td>
+                <td>349</td>
+            </tr>
+    </table>
+  </div>
+
+  <!-- Department Summary -->
+  <div class="section">
+    <h2>🏨 Risk Breakdown by Department</h2>
+    <table>
+      <tr><th>Department</th><th>Total Patients</th><th>Readmissions</th>
+          <th>Readmission Rate</th><th>Avg Risk Score</th><th>Critical</th><th>High Risk</th></tr>
+      <tr>
+                <td><strong>ICU</strong></td>
+                <td>681</td>
+                <td>137</td>
+                <td><strong style="color:#dc2626">20.12%</strong></td>
+                <td>6.76</td>
+                <td style="color:#dc2626"><strong>234</strong></td>
+                <td style="color:#ea580c"><strong>543</strong></td>
+            </tr><tr>
+                <td><strong>Nephrology</strong></td>
+                <td>630</td>
+                <td>140</td>
+                <td><strong style="color:#dc2626">22.22%</strong></td>
+                <td>6.74</td>
+                <td style="color:#dc2626"><strong>211</strong></td>
+                <td style="color:#ea580c"><strong>484</strong></td>
+            </tr><tr>
+                <td><strong>Cardiology</strong></td>
+                <td>714</td>
+                <td>149</td>
+                <td><strong style="color:#dc2626">20.87%</strong></td>
+                <td>6.69</td>
+                <td style="color:#dc2626"><strong>230</strong></td>
+                <td style="color:#ea580c"><strong>559</strong></td>
+            </tr><tr>
+                <td><strong>General Medicine</strong></td>
+                <td>669</td>
+                <td>146</td>
+                <td><strong style="color:#dc2626">21.82%</strong></td>
+                <td>6.69</td>
+                <td style="color:#dc2626"><strong>203</strong></td>
+                <td style="color:#ea580c"><strong>526</strong></td>
+            </tr><tr>
+                <td><strong>Neurology</strong></td>
+                <td>653</td>
+                <td>139</td>
+                <td><strong style="color:#dc2626">21.29%</strong></td>
+                <td>6.67</td>
+                <td style="color:#dc2626"><strong>212</strong></td>
+                <td style="color:#ea580c"><strong>500</strong></td>
+            </tr><tr>
+                <td><strong>Pulmonology</strong></td>
+                <td>691</td>
+                <td>144</td>
+                <td><strong style="color:#dc2626">20.84%</strong></td>
+                <td>6.66</td>
+                <td style="color:#dc2626"><strong>212</strong></td>
+                <td style="color:#ea580c"><strong>537</strong></td>
+            </tr><tr>
+                <td><strong>Orthopedics</strong></td>
+                <td>667</td>
+                <td>129</td>
+                <td><strong style="color:#dc2626">19.34%</strong></td>
+                <td>6.53</td>
+                <td style="color:#dc2626"><strong>184</strong></td>
+                <td style="color:#ea580c"><strong>492</strong></td>
+            </tr>
+    </table>
+  </div>
+
+</div>
+<div class="footer">Hospital Readmission Risk Pipeline · Built by Nitish Kolupoti · Data Engineering Portfolio</div>
+</body>
+</html>

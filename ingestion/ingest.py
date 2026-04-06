@@ -17,8 +17,8 @@ logging.basicConfig(
 RAW_FILE = "ingestion/patient_discharges.csv"
 SNOWFLAKE_CONFIG = {
     "account": "CELALUY-XV02685",
-    "user": "NITISHCHOWDARY22",
-    "password": "Nitishch@220022",  # Replace this
+    "user": "*********", # Replace this
+    "password": "********",  # Replace this
     "warehouse": "COMPUTE_WH",
     "database": "HOSPITAL_DB",
     "schema": "READMISSION"
